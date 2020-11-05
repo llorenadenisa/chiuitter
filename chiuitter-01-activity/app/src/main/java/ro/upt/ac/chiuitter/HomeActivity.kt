@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.view_home.*
+import android.util.Log
 
 class HomeActivity : AppCompatActivity() {
 
@@ -23,9 +24,9 @@ class HomeActivity : AppCompatActivity() {
     private fun shareChiuit(text: String) {
         val sendIntent = Intent().apply {
             // TODO 1: Configure to support text sending/sharing and then attach the text as intent's extra.
-
-
-
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_TEXT, text.toString())
+            type = "text/plain"
         }
 
         val intentChooser = Intent.createChooser(sendIntent, "")
@@ -38,16 +39,19 @@ class HomeActivity : AppCompatActivity() {
      */
     private fun composeChiuit() {
         // TODO 2: Create an explicit intent which points to ComposeActivity.
-
+        val composeActivityIntent = Intent(this, ComposeActivity::class.java)
 
         // TODO 3: Start a new activity with the previously defined intent.
         // We start a new activity that we expect to return the acquired text as the result.
+        startActivityForResult(composeActivityIntent, COMPOSE_REQUEST_CODE)
 
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         when (requestCode) {
-            COMPOSE_REQUEST_CODE -> if (resultCode == Activity.RESULT_OK) extractText(data)
+            COMPOSE_REQUEST_CODE -> if (resultCode == Activity.RESULT_OK) {
+                extractText(data)
+            }
             else -> super.onActivityResult(requestCode, resultCode, data)
         }
     }
@@ -55,10 +59,12 @@ class HomeActivity : AppCompatActivity() {
     private fun extractText(data: Intent?) {
         data?.let {
             // TODO 5: Extract the text from result intent.
-
-
+            val extraText = data.getStringExtra("extra_text")
             // TODO 6: Check if text is not null or empty, then set the new "chiuit" content.
-
+            if(extraText != null){
+                txv_content.setText(extraText)
+            }
+            else Log.d("EmptyTxt", "empty text")
 
         }
     }

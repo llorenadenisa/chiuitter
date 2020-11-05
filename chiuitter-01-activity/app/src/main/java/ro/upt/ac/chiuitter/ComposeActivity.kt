@@ -20,7 +20,6 @@ class ComposeActivity : AppCompatActivity() {
                 val content = etx_content.editableText.toString()
                 putExtra(EXTRA_TEXT, content)
             }
-
             // Mark the result as success and attach text data.
             setResult(Activity.RESULT_OK, returnIntent)
 
