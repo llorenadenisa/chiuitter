@@ -32,5 +32,4 @@ class ComposeActivity : AppCompatActivity() {
     companion object {
         const val EXTRA_TEXT = "extra_text"
     }
-
 }
