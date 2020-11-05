@@ -39,8 +39,12 @@ class DummyChiuitStore : ChiuitRepository {
                             "de strigat m-am săturat"))
 
     override fun addChiuit(chiuit: Chiuit) {
+        val listChiuit = getAll()
+        listChiuit.toMutableList().add(chiuit)
     }
 
     override fun removeChiuit(chiuit: Chiuit) {
+        val listChiuit = getAll()
+        listChiuit.toMutableList().remove(chiuit)
     }
 }

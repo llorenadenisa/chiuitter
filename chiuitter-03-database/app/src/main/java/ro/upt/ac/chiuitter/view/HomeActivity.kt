@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.view_home.*
 import ro.upt.ac.chiuitter.R
 import ro.upt.ac.chiuitter.data.database.ChiuitDbStore
 import ro.upt.ac.chiuitter.data.database.RoomDatabase
+import ro.upt.ac.chiuitter.domain.Chiuit
 import ro.upt.ac.chiuitter.viewmodel.HomeViewModel
 import ro.upt.ac.chiuitter.viewmodel.HomeViewModelFactory
 
@@ -36,27 +37,36 @@ class HomeActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(this@HomeActivity)
         }
 
-        viewModel.chiuitsLiveData.observe(this, Observer { chiuts ->
-            TODO("Instantiate an adapter with the received list and assign it to recycler view")
+        viewModel.chiuitsLiveData.observe(this, Observer { chiuits ->
+//            TODO("Instantiate an adapter with the received list and assign it to recycler view")
+            val listAdapter = ChiuitRecyclerViewAdapter(chiuits,
+                    fun(chiuit: Chiuit): Unit = shareChiuit(chiuit.description), fun(chiuit): Unit = deleteChiuit(chiuit))
+
+            rv_chiuit_list.apply {
+                setHasFixedSize(true)
+                adapter = listAdapter
+            }
+
         })
 
         viewModel.retrieveChiuits()
     }
-
     /*
     Defines text sharing/sending *implicit* intent, opens the application chooser menu
     and then starts a new activity which supports sharing/sending text.
      */
     private fun shareChiuit(text: String) {
         val sendIntent = Intent().apply {
-            TODO("Customize an implicit intent which triggers text sharing")
+           // TODO("Customize an implicit intent which triggers text sharing")
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_TEXT, text.toString())
+            type = "text/plain"
         }
 
         val intentChooser = Intent.createChooser(sendIntent, "")
 
         startActivity(intentChooser)
     }
-
     /*
     Defines an *explicit* intent which will be used to start ComposeActivity.
      */
@@ -79,6 +89,9 @@ class HomeActivity : AppCompatActivity() {
                 viewModel.addChiuit(text)
             }
         }
+    }
+    private fun deleteChiuit(chiuit: Chiuit){
+        viewModel.removeChiuit(chiuit)
     }
 
     companion object {
