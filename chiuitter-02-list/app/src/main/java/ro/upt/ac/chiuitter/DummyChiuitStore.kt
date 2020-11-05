@@ -3,7 +3,7 @@ package ro.upt.ac.chiuitter
 class DummyChiuitStore {
 
     fun getAllData(): List<Chiuit> =
-            listOf(
+            arrayListOf(
                     Chiuit("Ada-mi Doamne, timpu-odata\n" +
                             "Sa-mi vad tara mea bogata,\n" +
                             "Cei campi si munti inverziti\n" +

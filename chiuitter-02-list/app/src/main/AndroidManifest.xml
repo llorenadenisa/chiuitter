@@ -19,6 +19,14 @@
       </intent-filter>
     </activity>
 
+    <activity android:name=".ComposeActivity" >
+      <intent-filter>
+        <action android:name="android.intent.action.SEND" />
+        <action android:name="android.intent.action.DEFAULT" />
+        <data android:mimeType="text/plain" />
+      </intent-filter>
+    </activity>
+
   </application>
 
 </manifest>
