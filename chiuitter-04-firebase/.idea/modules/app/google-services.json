@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "795913262952",
+    "firebase_url": "https://chiuitter-04.firebaseio.com",
+    "project_id": "chiuitter-04",
+    "storage_bucket": "chiuitter-04.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:795913262952:android:14b7bdcc8ffffadc3828dd",
+        "android_client_info": {
+          "package_name": "ro.upt.ac.chiuitter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "795913262952-kkt614gpq6g7koj227esbmpc487utj1q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ro.upt.ac.chiuitter",
+            "certificate_hash": "7c255548bdd3073b636f7245b0a5a6633b9cb9a9"
+          }
+        },
+        {
+          "client_id": "795913262952-td72fn983a7b7o5df1e5gj4opd0p6vjm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkFEsto3XCdXBLS0msNFPpxFT3ynx3blA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "795913262952-td72fn983a7b7o5df1e5gj4opd0p6vjm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
